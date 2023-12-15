@@ -1,5 +1,5 @@
-resource "aws_iam_role" "k8s" {
-  name = "${var.prefix}-k8s-role"
+resource "aws_iam_role" "scsrole" {
+  name = "${var.prefix}-scs-role"
 
   assume_role_policy = <<EOF
 {
@@ -18,7 +18,7 @@ resource "aws_iam_role" "k8s" {
 EOF
 }
 
-resource "aws_iam_instance_profile" "k8s" {
-  name = "${var.prefix}-k8s"
-  role = aws_iam_role.k8s.name
+resource "aws_iam_instance_profile" "scsprofile" {
+  name = "${var.prefix}-scs"
+  role = aws_iam_role.scsrole.name
 }
