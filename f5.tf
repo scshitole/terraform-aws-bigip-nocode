@@ -1,7 +1,3 @@
-resource "random_string" "password" {
-  length  = 10
-  special = false
-}
 
 resource "aws_instance" "f5" {
   #F5 BIGIP-14.1.0.3-0.0.6 PAYG-Good 25Mbps-190326002717
@@ -25,13 +21,20 @@ resource "aws_instance" "f5" {
   }
 }
 
+resource "random_string" "password" {
+  length  = 10
+  special = false
+}
+locals {
+  template_vars = {
+    password = random_string.password.result
+  }
+}
+
 data "template_file" "f5_init" {
   template = file("template/f5.tpl")
 
-  vars = {
-    password = random_string.password.result
-  }
-
+  vars = local.template_vars
 }
 
 output "F5_ui" {
@@ -42,4 +45,3 @@ output "F5_ui" {
 output "F5_Password" {
   value = random_string.password.result
 }
-
