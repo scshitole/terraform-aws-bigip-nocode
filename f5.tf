@@ -30,11 +30,8 @@ locals {
     password = random_string.password.result
   }
 }
-
 data "template_file" "f5_init" {
-  template = file("template/f5.tpl")
-
-  vars = local.template_vars
+  template = templatefile("template/f5.tpl", local.template_vars)
 }
 
 output "F5_ui" {
