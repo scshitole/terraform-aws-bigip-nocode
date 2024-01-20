@@ -62,13 +62,6 @@ provider "registry.terraform.io/hashicorp/random" {
   ]
 }
 
-provider "registry.terraform.io/hashicorp/template" {
-  version = "2.2.0"
-  hashes = [
-    "h1:E4x6Mlre2OU3GbT2EFsNIOlKfA48yoAcyRmH/uTA+bw=",
-  ]
-}
-
 provider "registry.terraform.io/hashicorp/tls" {
   version = "4.0.5"
   hashes = [
